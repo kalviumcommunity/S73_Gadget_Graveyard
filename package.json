@@ -1,0 +1,12 @@
+{
+  "name": "s73_gadget_graveyard",
+  "version": "1.0.0",
+  "description": "Project Title: \"Gadget Graveyard: The Hall of Useless Wonders\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
