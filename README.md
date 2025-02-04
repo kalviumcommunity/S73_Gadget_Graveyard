@@ -17,3 +17,6 @@ On a deeper level, the project shows the sometimes absurd side of innovation and
 This project is unique and memorable because of its quirky nature. Most projects tend to be more utility-focused, but this one is a great example of embracing humor and creativity. It is a fun way to express both the technical depth of the creator and the potential for a user-centric platform. This type of project is more likely to capture attention, both in a class presentation and in a portfolio, as it combines technical skills with a unique and entertaining concept.
 
 Potential for Expansion: The project could be expanded in the future to include features such as integration with external APIs to pull in gadget-related data, or even a community forum for users to debate the merits (or lack thereof) of various gadgets. It could also introduce gamification elements, such as badges for top submitters or "Gadget Expert" titles, further enhancing user interaction and engagement.
+
+RENDER Connected:-
+https://s73-gadget-graveyard.onrender.com
