@@ -9,5 +9,5 @@ const GadgetCard = ({ name, category, condition, price }) => {
     );
   };
   
-  export default GadgetCard;
+export default GadgetCard;
   
