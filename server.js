@@ -1,31 +1,21 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const productRoutes = require("./routes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// MongoDB Connection
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("MongoDB Connected");
-  } catch (error) {
-    console.error("MongoDB Connection Failed:", error);
-    process.exit(1);
-  }
-};
 
-// Call connectDB function
-connectDB();
+app.use(express.json()); 
 
-// Home Route with Database Connection Status
-app.get("/", (req, res) => {
-  const dbStatus = mongoose.connection.readyState === 1 ? "Connected" : "Not Connected";
-  res.send(`Database Connection Status: ${dbStatus}`);
-});
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+}).then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error("MongoDB Connection Failed:", err));
+
+
+app.use("/api", productRoutes); 
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
