@@ -12,12 +12,26 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // MongoDB Connection
-mongoose
-  .connect(process.env.USER_ID, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("✅ MongoDB Connected"))
-  .catch((err) => console.error("❌ MongoDB Connection Failed:", err));
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.USER_ID, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ MongoDB Connected");
+  } catch (error) {
+    console.error("❌ MongoDB Connection Failed:", error);
+    process.exit(1);
+  }
+};
+
+// Call connectDB function
+connectDB();
+
+// Home Route with Database Connection Status
+app.get("/", (req, res) => {
+  const dbStatus = mongoose.connection.readyState === 1 ? "Connected" : "Not Connected";
+  res.send(`Database Connection Status: ${dbStatus}`);
+});
 
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
