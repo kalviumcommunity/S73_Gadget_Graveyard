@@ -1,11 +1,20 @@
-const express = require('express');
+const express = require("express");
+const mongoose = require("mongoose");
+const connectDB = require("./config/db");
+require("dotenv").config();
+
 const app = express();
-const PORT = process.env.PORT || 3000; // Use environment variable if available
 
-app.get('/ping', (req, res) => {
-    res.send('pong');
+// Connect to MongoDB
+connectDB();
+
+app.use(express.json());
+
+// Home route to show database connection status
+app.get("/", (req, res) => {
+  const dbStatus = mongoose.connection.readyState === 1 ? "Connected ✅" : "Not Connected ❌";
+  res.send(`<h2>Database Status: ${dbStatus}</h2>`);
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT} 🚀`));
