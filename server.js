@@ -1,6 +1,12 @@
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
+import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
+
+// Force-load the .env file
+dotenv.config({ path: "./.env" });
+
+// Debugging: Print the Mongo URI
+console.log("MONGO_URI:", process.env.MONGO_URI);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,9 +18,9 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log("MongoDB Connected");
+    console.log("✅ MongoDB Connected");
   } catch (error) {
-    console.error("MongoDB Connection Failed:", error);
+    console.error("❌ MongoDB Connection Failed:", error);
     process.exit(1);
   }
 };
@@ -28,4 +34,4 @@ app.get("/", (req, res) => {
   res.send(`Database Connection Status: ${dbStatus}`);
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
